@@ -1,4 +1,4 @@
-name: First CI Action
+name: CI Tests and Coverage
 
 on:
   push:
@@ -9,12 +9,53 @@ on:
       - master
 
 jobs:
-  test-run:
+  test-backend:
+    name: Test Backend
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Print a message
-        run: echo "Hello, BobApp CI is running!"
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "11"
+
+      - name: Run backend tests with coverage
+        working-directory: back
+        run: mvn test jacoco:report
+
+      - name: Upload JaCoCo report
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-coverage-report
+          path: back/target/site/jacoco
+
+  test-frontend:
+    name: Test Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        working-directory: front
+        run: npm install
+
+      - name: Run frontend tests with coverage
+        working-directory: front
+        run: npm run test -- --watch=false --code-coverage
+
+      - name: Upload Frontend Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage-report
+          path: front/coverage
