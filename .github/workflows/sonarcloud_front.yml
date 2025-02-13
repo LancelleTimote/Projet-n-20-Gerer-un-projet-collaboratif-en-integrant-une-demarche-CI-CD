@@ -41,7 +41,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
         with:
           args: >
-            -Dsonar.projectKey=LancelleTimote_Projet-n-20-Gerer-un-projet-collaboratif-en-integrant-une-demarche-CI-CD-front
+            -Dsonar.projectKey=LancelleTimote_Projet-n-20-Gerer-un-projet-collaboratif-en-integrant-une-demarche-CI-CD
             -Dsonar.organization=bob-app
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.branch.name=master
