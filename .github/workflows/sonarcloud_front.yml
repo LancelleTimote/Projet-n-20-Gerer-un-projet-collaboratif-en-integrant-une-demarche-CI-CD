@@ -29,7 +29,7 @@ jobs:
       - name: Run npm install
         run: npm install
       - name: Run npm test
-        run: npm run test
+        run: npm run test -- --no-watch --browsers=ChromeHeadlessCI
       - name: Build and analyse
         uses: SonarSource/sonarcloud-github-action@master
         with:
