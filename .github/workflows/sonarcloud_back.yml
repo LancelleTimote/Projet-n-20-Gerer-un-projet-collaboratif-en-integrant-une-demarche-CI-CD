@@ -41,6 +41,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACK }}
         run: |
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-          -Dsonar.projectKey=LancelleTimote_Projet-n-20-Gerer-un-projet-collaboratif-en-integrant-une-demarche-CI-CD \
+          -Dsonar.projectKey=Projet-n-20-Back \
           -Dsonar.organization=bob-app \
           -Dsonar.host.url=https://sonarcloud.io
