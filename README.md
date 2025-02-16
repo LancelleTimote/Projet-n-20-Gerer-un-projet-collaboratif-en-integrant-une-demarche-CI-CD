@@ -1,6 +1,6 @@
 # BobApp
 
-Clone projectt:
+Clone project:
 
 > git clone XXXXX
 
